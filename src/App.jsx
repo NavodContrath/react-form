@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const articleList = [
   {
     id: 1,
@@ -20,7 +22,10 @@ const articleList = [
 ];
 
 function App() {
-
+  const { newArticle, setNewArticle } = useState("")
+  function submitHandler(e) {
+    e.preventDefault()
+  }
   return (
     <div className="displayer">
       {articleList.map(article => {
@@ -33,6 +38,21 @@ function App() {
           </>
         )
       })}
+      <form onSubmit={submitHandler}>
+        <div class="mb-3">
+          <label for="newArticle" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="newArticle"
+            id="newArticle"
+            aria-describedby="newArticleHelpeId"
+            placeholder="Article"
+          />
+          <small id="newArticleHelper" class="form-text text-muted">Insert here a new article to add</small>
+        </div>
+        <button type="button">Submit</button>
+      </form>
     </div>
   )
 }
