@@ -19,4 +19,22 @@ const articleList = [
   }
 ];
 
+function App() {
 
+  return (
+    <div className="displayer">
+      {articleList.map(article => {
+        return (
+          <>
+            <div className="card">
+              <div className="card-head">{article.title}</div>
+              <div className="card-body"></div>
+            </div>
+          </>
+        )
+      })}
+    </div>
+  )
+}
+
+export default App
