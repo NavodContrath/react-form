@@ -1,59 +1,52 @@
 import { useState } from "react";
 
 const articleList = [
-  {
-    id: 1,
-    title: "Understanding React",
-    content: "React is a JavaScript library for building user interfaces...",
-    author: "John Doe"
-  },
-  {
-    id: 2,
-    title: "Getting Started with JavaScript",
-    content: "JavaScript is a versatile programming language used for web development...",
-    author: "Jane Smith"
-  },
-  {
-    id: 3,
-    title: "CSS Tips and Tricks",
-    content: "CSS is used to style HTML elements. Here are some tips to improve your CSS skills...",
-    author: "Alice Johnson"
-  }
+  "Understanding React",
+  "Getting Started with JavaScript",
+  "CSS Tips and Tricks",
 ];
 
 function App() {
-  const { newArticle, setNewArticle } = useState("")
+  const [newArticle, setNewArticle] = useState("")
+  const [articles, setNewArticles] = useState(articleList)
   function submitHandler(e) {
+    //used to prevent rendering of page
     e.preventDefault()
+    setNewArticles([...articles, newArticle])
+    console.log("submitted!")
   }
+
   return (
-    <div className="displayer">
-      {articleList.map(article => {
+    <>
+      {articles.map(article => {
         return (
           <>
             <div className="card">
-              <div className="card-head">{article.title}</div>
+              <div className="card-head">{article}</div>
               <div className="card-body"></div>
             </div>
           </>
         )
       })}
       <form onSubmit={submitHandler}>
-        <div class="mb-3">
-          <label for="newArticle" class="form-label">Name</label>
+        <div className="mb-3">
+          <label htmlFor="newArticle" className="form-label">Name</label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             name="newArticle"
             id="newArticle"
             aria-describedby="newArticleHelpeId"
             placeholder="Article"
+            value={newArticle}
+            onChange={(e) => setNewArticle(e.target.value)}
           />
-          <small id="newArticleHelper" class="form-text text-muted">Insert here a new article to add</small>
+          {console.log(newArticle)}
+          <small id="newArticleHelper" className="form-text text-muted">Insert here a new article to add</small>
         </div>
-        <button type="button">Submit</button>
+        <button type="submit">Submit</button>
       </form>
-    </div>
+    </>
   )
 }
 
