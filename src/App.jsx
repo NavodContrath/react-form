@@ -30,7 +30,7 @@ function App() {
       })}
       <form onSubmit={submitHandler}>
         <div className="mb-3">
-          <label htmlFor="newArticle" className="form-label">Name</label>
+          <label htmlFor="newArticle" className="form-label">New Article's title</label>
           <input
             type="text"
             className="form-control"
@@ -42,7 +42,7 @@ function App() {
             onChange={(e) => setNewArticle(e.target.value)}
           />
           {console.log(newArticle)}
-          <small id="newArticleHelper" className="form-text text-muted">Insert here a new article to add</small>
+          <small id="newArticleHelper" className="form-text text-muted">Insert here the title of a new article to add</small>
         </div>
         <button type="submit">Submit</button>
       </form>
